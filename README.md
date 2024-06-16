@@ -51,7 +51,7 @@ from embedding import TextEmbedding
 
 text_to_vector = TextEmbedding()
 word_embedding_model = api.load("glove-wiki-gigaword-50")
-# Check for more models here -> https://radimrehurek.com/gensim/models/word2vec.html
+# Check for more models here -> [Gensim API Models](https://radimrehurek.com/gensim/models/word2vec.html)
 
 # Load your text data
 test_file = pd.read_csv('Test1.csv', dtype='str', encoding='utf-8')
