@@ -22,6 +22,12 @@ Welcome to the **Text Embedding and Model Fetching Toolkit**! This repository pr
 └── text_to_vector_embedding.ipynb    # Contains complete codes with outputs
 ```
 
+### Jupyter Notebook: `text_to_vector_embedding.ipynb`
+
+Explore the detailed implementation and outputs in the Jupyter Notebook.
+
+- [Text-2-Vector-Embedding-Implmentation](text_to_vector_embedding.ipynb)
+
 ## 🚀 Installation
 
 To get started, clone the repository and install the required packages:
