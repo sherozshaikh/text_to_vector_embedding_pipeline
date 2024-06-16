@@ -83,7 +83,7 @@ model_results_df = hf_model_fetcher.fetch_model_details()
 print(model_results_df.head())
 ```
 <p align="middle">
-  <img src="HF_Model_ALLENAI.png" width="500"/>
+  <img src="HF_Model_ALLENAI.png" width="900"/>
 </p>
 
 
