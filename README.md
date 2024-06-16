@@ -1,6 +1,6 @@
-# 📚 Text Embedding and Model Fetching Toolkit
+# 📚 Text Embedding and Hugging Face Model Fetching Toolkit
 
-Welcome to the **Text Embedding and Model Fetching Toolkit**! This repository provides a comprehensive set of tools for text embedding using various methods and fetching HuggingFace models. It includes custom classes and functions to make your NLP tasks easier and more efficient.
+Welcome to the **Text Embedding and Hugging Face Model Fetching Toolkit**! This repository provides a comprehensive set of tools for text embedding using various methods and fetching HuggingFace models. It includes custom classes and functions to make your NLP tasks easier and more efficient.
 
 ## 🌟 Features
 
