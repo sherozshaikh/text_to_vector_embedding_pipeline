@@ -86,6 +86,22 @@ print(model_results_df.head())
   <img src="HF_Model_ALLENAI.png" width="900"/>
 </p>
 
+### Frequently Used Model Parent Links
+
+Here are some frequently used model parent links from HuggingFace:
+
+- [Sentence Transformers](https://huggingface.co/sentence-transformers)
+- [OpenAI Community](https://huggingface.co/openai-community)
+- [Google BERT](https://huggingface.co/google-bert)
+- [Google](https://huggingface.co/google)
+- [Facebook AI](https://huggingface.co/FacebookAI)
+- [Microsoft](https://huggingface.co/microsoft)
+- [DistilBERT](https://huggingface.co/distilbert)
+- [ALBERT](https://huggingface.co/albert)
+- [AllenAI](https://huggingface.co/allenai)
+- [XLNet](https://huggingface.co/xlnet)
+- [Flair](https://huggingface.co/flair)
+- [Nguyễn Huyông](https://huggingface.co/nghuyong)
 
 ### Custom RAM Cleanup
 
