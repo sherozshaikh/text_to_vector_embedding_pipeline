@@ -22,7 +22,7 @@ Welcome to the **Text Embedding and Hugging Face Model Fetching Toolkit**! This 
 └── text_to_vector_embedding.ipynb    # Contains complete codes with outputs
 ```
 
-### Jupyter Notebook: `text_to_vector_embedding.ipynb`
+### Jupyter Notebook:
 
 Explore the detailed implementation and outputs in the Jupyter Notebook.
 
