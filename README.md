@@ -88,7 +88,7 @@ print(model_results_df.head())
 
 ### Frequently Used Model Parent Links
 
-Here are some frequently used model parent links from HuggingFace:
+Here are some frequently used models from HuggingFace:
 
 - [Sentence Transformers](https://huggingface.co/sentence-transformers)
 - [OpenAI Community](https://huggingface.co/openai-community)
