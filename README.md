@@ -90,18 +90,18 @@ print(model_results_df.head())
 
 Here are some frequently used models from HuggingFace:
 
-- **[Sentence Transformers](https://huggingface.co/sentence-transformers)**
-- **[OpenAI Community](https://huggingface.co/openai-community)**
-- **[Google BERT](https://huggingface.co/google-bert)**
-- **[Google](https://huggingface.co/google)**
-- **[Facebook AI](https://huggingface.co/FacebookAI)**
-- **[Microsoft](https://huggingface.co/microsoft)**
-- **[DistilBERT](https://huggingface.co/distilbert)**
-- **[ALBERT](https://huggingface.co/albert)**
-- **[AllenAI](https://huggingface.co/allenai)**
-- **[XLNet](https://huggingface.co/xlnet)**
-- **[Flair](https://huggingface.co/flair)**
-- **[Nguyễn Huyông](https://huggingface.co/nghuyong)**
+- **[OpenAI Community](https://huggingface.co/openai-community)** - `https://huggingface.co/openai-community`
+- **[Google BERT](https://huggingface.co/google-bert)** - `https://huggingface.co/google-bert`
+- **[Facebook AI](https://huggingface.co/FacebookAI)** - `https://huggingface.co/FacebookAI`
+- **[DistilBERT](https://huggingface.co/distilbert)** - `https://huggingface.co/distilbert`
+- **[ALBERT](https://huggingface.co/albert)** - `https://huggingface.co/albert`
+- **[Google](https://huggingface.co/google)** - `https://huggingface.co/google`
+- **[Microsoft](https://huggingface.co/microsoft)** - `https://huggingface.co/microsoft`
+- **[AllenAI](https://huggingface.co/allenai)** - `https://huggingface.co/allenai`
+- **[XLNet](https://huggingface.co/xlnet)** - `https://huggingface.co/xlnet`
+- **[Flair](https://huggingface.co/flair)** - `https://huggingface.co/flair`
+- **[Nguyễn Xuân Huy](https://huggingface.co/nghuyong)** - `https://huggingface.co/nghuyong`
+- **[Sentence Transformers](https://huggingface.co/sentence-transformers)** - `https://huggingface.co/sentence-transformers`
 
 ### Custom RAM Cleanup
 
