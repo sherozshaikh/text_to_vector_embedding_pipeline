@@ -158,18 +158,19 @@ class TextEmbedding():
 
         return np.array([np.mean([self.processing_word_embedding(stxt = word,model_ = model_name) for word in word_tokenize(doc)],axis = 0) for doc in texts])
 
-    def get_laser_embeddings(self,texts:List[str] = [])->np.ndarray:
+    def get_laser_embeddings(self,texts:List[str] = [],model_name = None)->np.ndarray:
         """
         Compute LASER (Language-Agnostic SEntence Representations) embeddings for a list of texts.
 
         Args:
         - texts (list): List of strings representing documents.
+        - model_name: Pre-trained word embedding model.
 
         Returns:
         - np.ndarray: LASER Embeddings of the input texts.
         """
 
-        return laser_embeddings.embed_sentences(texts,lang = 'en')
+        return model_name.embed_sentences(texts,lang = 'en')
 
     def get_spacy_embedding(self,texts:List[str] = [],nlp_spacy = None)->np.ndarray:
         """
