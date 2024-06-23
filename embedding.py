@@ -172,31 +172,33 @@ class TextEmbedding():
 
         return model_name.embed_sentences(texts,lang = 'en')
 
-    def get_spacy_embedding(self,texts:List[str] = [],nlp_spacy = None)->np.ndarray:
+    def get_spacy_embedding(self,texts:List[str] = [],model_name = None)->np.ndarray:
         """
         Compute spaCy word embeddings for a list of texts.
 
         Args:
         - texts (list): List of strings representing documents.
+        - model_name: Pre-trained word embedding model.
 
         Returns:
         - np.ndarray: spaCy embeddings of the input texts.
         """
 
-        return np.array([nlp_spacy(doc).vector for doc in texts])
+        return np.array([model_name(doc).vector for doc in texts])
 
-    def get_sentence_transformers_embedding(self,texts:List[str] = [])->np.ndarray:
+    def get_sentence_transformers_embedding(self,texts:List[str] = [],model_name = None)->np.ndarray:
         """
         Compute Sentence Transformers embeddings for a list of texts.
 
         Args:
         - texts (list): List of strings representing documents.
+        - model_name: Pre-trained word embedding model.
 
         Returns:
         - np.ndarray: Sentence Transformers embeddings of the input texts.
         """
 
-        return sentence_transformer_model.encode(texts)
+        return model_name.encode(texts)
 
     def get_pre_trained_models_embedding(self,texts:List[str] = [],model_name = None,model_tokenizer = None,custom_max_length:int = 256)->np.ndarray:
         """
@@ -296,13 +298,13 @@ if __name__ == "__main__":
     print(text_to_vector.get_word_embedding(texts = [test_sample],model_name = word_embedding_model).shape)
 
     print(text_to_vector.get_laser_embeddings.__doc__)
-    print(text_to_vector.get_laser_embeddings(texts = [test_sample]).shape)
+    print(text_to_vector.get_laser_embeddings(texts = [test_sample],model_name = laser_embeddings).shape)
 
     print(text_to_vector.get_spacy_embedding.__doc__)
-    print(text_to_vector.get_spacy_embedding(texts = [test_sample],nlp_spacy = nlp_spacy_model).shape)
+    print(text_to_vector.get_spacy_embedding(texts = [test_sample],model_name = nlp_spacy_model).shape)
 
     print(text_to_vector.get_sentence_transformers_embedding.__doc__)
-    print(text_to_vector.get_sentence_transformers_embedding(texts = [test_sample]).shape)
+    print(text_to_vector.get_sentence_transformers_embedding(texts = [test_sample],model_name = sentence_transformer_model).shape)
 
     print(text_to_vector.get_pre_trained_models_embedding.__doc__)
     print(text_to_vector.get_pre_trained_models_embedding(texts = [test_sample],model_name = hf_model,model_tokenizer = hf_tokenizer,custom_max_length = 256).shape)
@@ -316,9 +318,8 @@ if __name__ == "__main__":
     print(f'{test_file.shape = }')
     print(text_to_vector.get_sklearn_embedding(texts=test_file['Title'].tolist(),embed_size=5).shape)
     print(text_to_vector.get_word_embedding(texts=test_file['Title'].tolist(),model_name=word_embedding_model).shape)
-    print(text_to_vector.get_laser_embeddings(texts=test_file['Title'].tolist()).shape)
-    print(text_to_vector.get_spacy_embedding(texts=test_file['Title'].tolist(),nlp_spacy=nlp_spacy_model).shape)
-    print(text_to_vector.get_sentence_transformers_embedding(texts=test_file['Title'].tolist()).shape)
-    print(text_to_vector.get_pre_trained_models_embedding(texts=test_file['Title'].tolist(),model_name=hf_model,model_tokenizer=hf_tokenizer,custom_max_length=256).shape)
-
+    print(text_to_vector.get_laser_embeddings(texts=test_file['Title'].tolist(),model_name = laser_embeddings).shape)
+    print(text_to_vector.get_spacy_embedding(texts=test_file['Title'].tolist(),model_name = nlp_spacy_model).shape)
+    print(text_to_vector.get_sentence_transformers_embedding(texts=test_file['Title'].tolist(),model_name = sentence_transformer_model).shape)
+    print(text_to_vector.get_pre_trained_models_embedding(texts=test_file['Title'].tolist(),model_name = hf_model,model_tokenizer = hf_tokenizer,custom_max_length=256).shape)
 
