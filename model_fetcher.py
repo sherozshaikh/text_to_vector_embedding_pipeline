@@ -236,3 +236,5 @@ if __name__ == "__main__":
     model_results_df = hf_model_fetcher.fetch_model_details()
     print(model_results_df)
 
+    custom_ram_cleanup_func()
+    del custom_ram_cleanup_func
