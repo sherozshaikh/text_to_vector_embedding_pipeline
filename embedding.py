@@ -286,6 +286,31 @@ class TextEmbedding():
         else:
             return ' '.join([x for x in word_tokenize(txt) if x.isalnum()])
 
+def custom_ram_cleanup_func()->None:
+    """
+    Clean up global variables except for specific exclusions and system modules.
+
+    This function deletes all global variables except those specified in
+    `exclude_vars` and variables starting with underscore ('_').
+
+    Excluded variables:
+    - Modules imported into the system (except 'sys' and 'os')
+    - 'sys', 'os', and 'custom_ram_cleanup_func' itself
+
+    Returns:
+    None
+    """
+
+    import sys
+    all_vars = list(globals().keys())
+    exclude_vars = list(sys.modules.keys())
+    exclude_vars.extend(['In','Out','_','__','___','__builtin__','__builtins__','__doc__','__loader__','__name__','__package__','__spec__','_dh','_i','_i1','_ih','_ii','_iii','_oh','exit','get_ipython','quit','sys','os','custom_ram_cleanup_func',])
+    for var in all_vars:
+      if var not in exclude_vars and not var.startswith('_'):
+          del globals()[var]
+    del sys
+    return None
+
 # Example usage:
 if __name__ == "__main__":
 
@@ -365,4 +390,7 @@ if __name__ == "__main__":
     print(text_to_vector.get_spacy_embedding(texts=test_file['Title'].tolist(),model_name = nlp_spacy_model).shape)
     print(text_to_vector.get_sentence_transformers_embedding(texts=test_file['Title'].tolist(),model_name = sentence_transformer_model).shape)
     print(text_to_vector.get_pre_trained_models_embedding(texts=test_file['Title'].tolist(),model_name = hf_model,model_tokenizer = hf_tokenizer,custom_max_length=256).shape)
+
+    custom_ram_cleanup_func()
+    del custom_ram_cleanup_func
 
