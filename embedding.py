@@ -1,22 +1,7 @@
-from typing import List,Dict
-import numpy as np
-import string
-import warnings
-warnings.filterwarnings("ignore")
-from sklearn.decomposition import TruncatedSVD,PCA,KernelPCA,SparsePCA,MiniBatchSparsePCA,NMF,MiniBatchNMF,FactorAnalysis,FastICA
-from sklearn.random_projection import GaussianRandomProjection,SparseRandomProjection
-from sklearn.feature_extraction.text import TfidfVectorizer,CountVectorizer
-from sklearn.manifold import LocallyLinearEmbedding,Isomap
-from sklearn.pipeline import Pipeline
-import nltk
-nltk.download(['punkt', 'stopwords'])
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
-nltk_stopwords_set = set(stopwords.words('english'))
-
 class TextEmbedding():
     def __init__(self):
         self.check_packages()
+        self.import_packages()
 
     def __repr__(self):
         return f"TextEmbedding()"
@@ -46,6 +31,32 @@ class TextEmbedding():
               print(f"Required package {package_name} was not installed!: {str(e)}")
         del importlib
         print("All required packages are installed.")
+        return None
+
+    def import_packages(self)->None:
+        """
+        Import installed packages.
+
+        Returns:
+        - None
+        """
+        from typing import List,Dict
+        import numpy as np
+        import string
+        import warnings
+        warnings.filterwarnings("ignore")
+        from sklearn.decomposition import TruncatedSVD,PCA,KernelPCA,SparsePCA,MiniBatchSparsePCA,NMF,MiniBatchNMF,FactorAnalysis,FastICA
+        from sklearn.random_projection import GaussianRandomProjection,SparseRandomProjection
+        from sklearn.feature_extraction.text import TfidfVectorizer,CountVectorizer
+        from sklearn.manifold import LocallyLinearEmbedding,Isomap
+        from sklearn.pipeline import Pipeline
+        import nltk
+        nltk.download(['punkt', 'stopwords'])
+        from nltk.corpus import stopwords
+        from nltk.tokenize import word_tokenize
+        # self.nltk_stopwords_set = set(stopwords.words('english'))
+
+        print("All required packages are imported.")
         return None
 
     def get_sklearn_embedding(self,texts:List[str] = [],custom_max_features:int = 5_000,custom_dtype:np.dtype = np.float64,is_lower:bool = True,use_stop_words:bool = True,custom_ngram_range:tuple = (1,1),vectorizer:str = 'tfidf',reduction_method:str = 'svd',embed_size:int = 50)->np.ndarray:
@@ -291,6 +302,7 @@ if __name__ == "__main__":
     from laserembeddings import Laser
     import gensim.downloader as api
     import spacy
+    import pandas as pd
 
     laser_embeddings = Laser()
 
@@ -304,13 +316,12 @@ if __name__ == "__main__":
     hf_tokenizer = AutoTokenizer.from_pretrained(hf_model_name)
     hf_model = AutoModel.from_pretrained(hf_model_name)
 
+    text_to_vector = TextEmbedding()
+
     test_file = pd.read_csv('Test1.csv',dtype='str',encoding='utf-8')
     print(f'{test_file.shape}')
 
-    text_to_vector = TextEmbedding()
-
     # Single Instances
-
     test_sample = test_file.iloc[0]['Title']
     print(f'{test_sample = }')
 
