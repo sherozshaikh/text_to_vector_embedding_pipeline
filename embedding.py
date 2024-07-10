@@ -16,13 +16,37 @@ nltk_stopwords_set = set(stopwords.words('english'))
 
 class TextEmbedding():
     def __init__(self):
-        pass
+        self.check_packages()
 
     def __repr__(self):
         return f"TextEmbedding()"
 
     def __str__(self):
         return "Class to embed text using various methods."
+
+    def check_packages(self)->None:
+        """
+        Checks for required Python packages and installs them if not already installed.
+
+        Returns:
+        - None
+        """
+        !pip install --quiet importlib
+        import importlib
+
+        req_packages:list = ['typing','numpy','string','warnings','sklearn','nltk']
+
+        for package_name in req_packages:
+          try:
+            importlib.import_module(package_name)
+          except:
+            try:
+              !pip install --quiet {package_name}
+            except Exception as e:
+              print(f"Required package {package_name} was not installed!: {str(e)}")
+        del importlib
+        print("All required packages are installed.")
+        return None
 
     def get_sklearn_embedding(self,texts:List[str] = [],custom_max_features:int = 5_000,custom_dtype:np.dtype = np.float64,is_lower:bool = True,use_stop_words:bool = True,custom_ngram_range:tuple = (1,1),vectorizer:str = 'tfidf',reduction_method:str = 'svd',embed_size:int = 50)->np.ndarray:
         """
@@ -253,6 +277,8 @@ class TextEmbedding():
 
 # Example usage:
 if __name__ == "__main__":
+
+    !pip install spacy spacy-transformers sentence-transformers laserembeddings gensim
 
     import torch
     from transformers import AutoTokenizer,AutoModel
