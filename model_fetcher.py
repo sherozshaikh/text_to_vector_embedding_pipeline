@@ -1,3 +1,33 @@
+# -*- coding: utf-8 -*-
+
+# Checks for required Python packages and installs them if not already installed.
+!pip install --quiet importlib
+import importlib
+
+req_packages:list = ['typing','numpy','pandas','string','json','requests','bs4']
+
+for package_name in req_packages:
+  try:
+    importlib.import_module(package_name)
+  except:
+    try:
+      !pip install --quiet {package_name}
+    except Exception as e:
+      print(f"Required package {package_name} was not installed!: {str(e)}")
+del importlib
+print("All required packages are installed.")
+
+# Import installed packages.
+from typing import Dict
+import time
+import numpy as np
+import pandas as pd
+import string
+import json
+import requests
+from bs4 import BeautifulSoup
+print("All required packages are imported.")
+
 class HuggingFaceModelFetcher():
     """
     A class to fetch model details from Hugging Face URLs and return as a Pandas DataFrame.
@@ -19,8 +49,6 @@ class HuggingFaceModelFetcher():
         - url_to_parse (str): URL to parse for model details.
         - close_time (int, optional), default = 10: Timeout duration in seconds for the HTTP request. Default is 10 seconds.
         """
-        self.check_packages()
-        self.import_packages()
         self.url_to_parse = url_to_parse
         self.close_time = close_time
 
@@ -29,48 +57,6 @@ class HuggingFaceModelFetcher():
 
     def __str__(self):
         return "Class to fetch huggingface models and sort based on downloads and likes."
-
-  def check_packages(self)->None:
-        """
-        Checks for required Python packages and installs them if not already installed.
-    
-        Returns:
-        - None
-        """
-        !pip install --quiet importlib
-        import importlib
-    
-        req_packages:list = ['typing','numpy','pandas','string','json','requests','bs4']
-    
-        for package_name in req_packages:
-          try:
-            importlib.import_module(package_name)
-          except:
-            try:
-              !pip install --quiet {package_name}
-            except Exception as e:
-              print(f"Required package {package_name} was not installed!: {str(e)}")
-        del importlib
-        print("All required packages are installed.")
-        return None
-
-    def import_packages(self)->None:
-        """
-        Import installed packages.
-        
-        Returns:
-        - None
-        """
-        from typing import Dict
-        import numpy as np
-        import pandas as pd
-        import string
-        import json
-        import requests
-        from bs4 import BeautifulSoup
-        
-        print("All required packages are imported.")
-        return None
 
     def show_help(self)->None:
         """
@@ -185,24 +171,28 @@ class HuggingFaceModelFetcher():
         Returns:
         - pd.DataFrame: DataFrame with aggregated model details (Model_Name, Likes, Downloads, Pipeline_Tag).
         """
-
+        start_time:float = time.time()
         try:
             url_response = requests.get(url=self.url_to_parse,timeout=self.close_time)
 
             if url_response.status_code == 200:
                 parsed_response = BeautifulSoup(url_response.content,'html.parser')
+                print(f"Elapsed time: {((time.time() - start_time) / 60):.2f} minutes")
                 return self.get_model_information(parsed_response)
 
             else:
                 print(f'Failed to retrieve content. Status code:{url_response.status_code}')
+                print(f"Elapsed time: {((time.time() - start_time) / 60):.2f} minutes")
                 return pd.DataFrame()
 
         except requests.exceptions.Timeout:
             print(f'Timeout error:The request timed out after {self.close_time} seconds.')
+            print(f"Elapsed time: {((time.time() - start_time) / 60):.2f} minutes")
             return pd.DataFrame()
 
         except requests.exceptions.RequestException as e:
             print(f'Request error:{e}')
+            print(f"Elapsed time: {((time.time() - start_time) / 60):.2f} minutes")
             return pd.DataFrame()
 
 def custom_ram_cleanup_func()->None:
