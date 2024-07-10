@@ -29,12 +29,37 @@ class HuggingFaceModelFetcher():
         """
         self.url_to_parse = url_to_parse
         self.close_time = close_time
+        self.check_packages()
 
     def __repr__(self):
         return f"HuggingFaceModelFetcher()"
 
     def __str__(self):
         return "Class to fetch huggingface models and sort based on downloads and likes."
+
+  def check_packages(self)->None:
+    """
+    Checks for required Python packages and installs them if not already installed.
+
+    Returns:
+    - None
+    """
+    !pip install --quiet importlib
+    import importlib
+
+    req_packages:list = ['typing','numpy','pandas','string','json','requests','bs4']
+
+    for package_name in req_packages:
+      try:
+        importlib.import_module(package_name)
+      except:
+        try:
+          !pip install --quiet {package_name}
+        except Exception as e:
+          print(f"Required package {package_name} was not installed!: {str(e)}")
+    del importlib
+    print("All required packages are installed.")
+    return None
 
     def show_help(self)->None:
         """
@@ -149,6 +174,7 @@ class HuggingFaceModelFetcher():
         Returns:
         - pd.DataFrame: DataFrame with aggregated model details (Model_Name, Likes, Downloads, Pipeline_Tag).
         """
+
         try:
             url_response = requests.get(url=self.url_to_parse,timeout=self.close_time)
 
