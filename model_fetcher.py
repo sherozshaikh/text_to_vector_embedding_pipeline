@@ -1,11 +1,3 @@
-from typing import Dict
-import numpy as np
-import pandas as pd
-import string
-import json
-import requests
-from bs4 import BeautifulSoup
-
 class HuggingFaceModelFetcher():
     """
     A class to fetch model details from Hugging Face URLs and return as a Pandas DataFrame.
@@ -30,6 +22,7 @@ class HuggingFaceModelFetcher():
         self.url_to_parse = url_to_parse
         self.close_time = close_time
         self.check_packages()
+        self.import_packages()
 
     def __repr__(self):
         return f"HuggingFaceModelFetcher()"
@@ -38,28 +31,46 @@ class HuggingFaceModelFetcher():
         return "Class to fetch huggingface models and sort based on downloads and likes."
 
   def check_packages(self)->None:
-    """
-    Checks for required Python packages and installs them if not already installed.
+        """
+        Checks for required Python packages and installs them if not already installed.
+    
+        Returns:
+        - None
+        """
+        !pip install --quiet importlib
+        import importlib
+    
+        req_packages:list = ['typing','numpy','pandas','string','json','requests','bs4']
+    
+        for package_name in req_packages:
+          try:
+            importlib.import_module(package_name)
+          except:
+            try:
+              !pip install --quiet {package_name}
+            except Exception as e:
+              print(f"Required package {package_name} was not installed!: {str(e)}")
+        del importlib
+        print("All required packages are installed.")
+        return None
 
-    Returns:
-    - None
-    """
-    !pip install --quiet importlib
-    import importlib
-
-    req_packages:list = ['typing','numpy','pandas','string','json','requests','bs4']
-
-    for package_name in req_packages:
-      try:
-        importlib.import_module(package_name)
-      except:
-        try:
-          !pip install --quiet {package_name}
-        except Exception as e:
-          print(f"Required package {package_name} was not installed!: {str(e)}")
-    del importlib
-    print("All required packages are installed.")
-    return None
+    def import_packages(self)->None:
+        """
+        Import installed packages.
+        
+        Returns:
+        - None
+        """
+        from typing import Dict
+        import numpy as np
+        import pandas as pd
+        import string
+        import json
+        import requests
+        from bs4 import BeautifulSoup
+        
+        print("All required packages are imported.")
+        return None
 
     def show_help(self)->None:
         """
