@@ -1,25 +1,18 @@
 from typing import List,Dict
 import numpy as np
 import string
-import torch
-from transformers import AutoTokenizer,AutoModel
-from sentence_transformers import SentenceTransformer
-from laserembeddings import Laser
-import gensim.downloader as api
-import spacy
+import warnings
+warnings.filterwarnings("ignore")
 from sklearn.decomposition import TruncatedSVD,PCA,KernelPCA,SparsePCA,MiniBatchSparsePCA,NMF,MiniBatchNMF,FactorAnalysis,FastICA
 from sklearn.random_projection import GaussianRandomProjection,SparseRandomProjection
 from sklearn.feature_extraction.text import TfidfVectorizer,CountVectorizer
 from sklearn.manifold import LocallyLinearEmbedding,Isomap
 from sklearn.pipeline import Pipeline
 import nltk
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
-import warnings
-warnings.filterwarnings("ignore")
 nltk.download(['punkt', 'stopwords'])
 nltk_stopwords_set = set(stopwords.words('english'))
-
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
 class TextEmbedding():
     def __init__(self):
         pass
@@ -259,6 +252,13 @@ class TextEmbedding():
 
 # Example usage:
 if __name__ == "__main__":
+
+    import torch
+    from transformers import AutoTokenizer,AutoModel
+    from sentence_transformers import SentenceTransformer
+    from laserembeddings import Laser
+    import gensim.downloader as api
+    import spacy
 
     laser_embeddings = Laser()
 
