@@ -10,9 +10,10 @@ from sklearn.manifold import LocallyLinearEmbedding,Isomap
 from sklearn.pipeline import Pipeline
 import nltk
 nltk.download(['punkt', 'stopwords'])
-nltk_stopwords_set = set(stopwords.words('english'))
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+nltk_stopwords_set = set(stopwords.words('english'))
+
 class TextEmbedding():
     def __init__(self):
         pass
