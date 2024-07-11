@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # Checks for required Python packages and installs them if not already installed.
-!pip install --quiet importlib
+import subprocess
 import importlib
 
 req_packages:list = ['typing','numpy','string','warnings','sklearn','nltk']
@@ -11,7 +11,8 @@ for package_name in req_packages:
     importlib.import_module(package_name)
   except:
     try:
-      !pip install --quiet {package_name}
+      # !pip install --quiet {package_name}
+      subprocess.check_call(['pip', 'install', '--quiet', package_name])
     except Exception as e:
       print(f"Required package {package_name} was not installed!: {str(e)}")
 del importlib
