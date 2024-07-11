@@ -301,12 +301,13 @@ def custom_ram_cleanup_func()->None:
 # Example usage:
 if __name__ == "__main__":
 
-    !pip install spacy spacy-transformers sentence-transformers laserembeddings gensim
-    !python -m laserembeddings download-models
-    !python -m spacy download en_core_web_sm
-    # !python -m spacy download en_core_web_md
-    # !python -m spacy download en_core_web_lg
-    # !python -m spacy download en_core_web_trf
+    # uncomment and install
+    # !pip install spacy spacy-transformers sentence-transformers laserembeddings gensim
+    # !python -m laserembeddings download-models
+    # !python -m spacy download en_core_web_sm
+    # # !python -m spacy download en_core_web_md
+    # # !python -m spacy download en_core_web_lg
+    # # !python -m spacy download en_core_web_trf
 
     import torch
     from transformers import AutoTokenizer,AutoModel
