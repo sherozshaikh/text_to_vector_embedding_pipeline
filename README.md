@@ -60,7 +60,7 @@ word_embedding_model = api.load("glove-wiki-gigaword-50")
 # Check for more models here -> https://radimrehurek.com/gensim/models/word2vec.html
 
 # Load your text data
-test_file = pd.read_csv('Test1.csv', dtype='str', encoding='utf-8')
+test_file:pd.DataFrame = pd.read_csv('Test1.csv', dtype='str', encoding='utf-8')
 test_sample = test_file.iloc[0]['Title']
 
 # Preprocess and embed text
@@ -78,7 +78,7 @@ print(f'{word_embeddings.shape = }')
 from model_fetcher import HuggingFaceModelFetcher
 
 hf_model_fetcher = HuggingFaceModelFetcher(url_to_parse='https://huggingface.co/allenai', close_time=10)
-model_results_df = hf_model_fetcher.fetch_model_details()
+model_results_df:pd.DataFrame = hf_model_fetcher.fetch_model_details()
 
 print(model_results_df.head())
 ```
